@@ -8,6 +8,8 @@ public abstract class AbstractItem implements ItemUpdater {
     @Getter
     Item item;
 
+    protected abstract void updateQuality();
+
     protected AbstractItem(Item item) {
         this.item = item;
     }
@@ -24,11 +26,11 @@ public abstract class AbstractItem implements ItemUpdater {
         getItem().quality = Math.max(getItem().quality - amount, MIN_QUALITY);
     }
 
-    protected boolean isSellInSmallerThan(int sellInValue) {
-        return getItem().sellIn < sellInValue;
-    }
-
     protected boolean isExpired() {
         return isSellInSmallerThan(0);
+    }
+
+    protected boolean isSellInSmallerThan(int sellInValue) {
+        return getItem().sellIn < sellInValue;
     }
 }

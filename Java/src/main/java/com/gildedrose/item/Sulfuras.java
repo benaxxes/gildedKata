@@ -11,7 +11,8 @@ class Sulfuras extends AbstractItem {
         updateQuality();
     }
 
-    private void updateQuality() {
+    @Override
+    protected void updateQuality() {
         if (isExpired()) {
             getItem().quality = 0;
         }

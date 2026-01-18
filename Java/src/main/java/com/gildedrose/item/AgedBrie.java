@@ -15,7 +15,8 @@ class AgedBrie extends AbstractItem {
         }
     }
 
-    private void updateQuality() {
+    @Override
+    protected void updateQuality() {
         increaseQuality();
     }
 }

@@ -16,7 +16,8 @@ public class ConjuredItem extends AbstractItem {
         }
     }
 
-    private void updateQuality() {
+    @Override
+    protected void updateQuality() {
             decreaseQuality(2);
     }
 }

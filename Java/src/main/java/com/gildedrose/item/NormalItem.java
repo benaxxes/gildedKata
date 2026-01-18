@@ -16,7 +16,8 @@ class NormalItem extends AbstractItem {
 
     }
 
-    private void updateQuality() {
+    @Override
+    protected void updateQuality() {
         decreaseQuality(1);
     }
 }
