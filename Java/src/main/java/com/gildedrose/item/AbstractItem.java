@@ -3,38 +3,38 @@ package com.gildedrose.item;
 import lombok.Getter;
 
 abstract class AbstractItem implements ItemUpdater {
-    protected static final int MIN_QUALITY = 0;
-    protected static final int MAX_QUALITY = 50;
+    static final int MIN_QUALITY = 0;
+    static final int MAX_QUALITY = 50;
     @Getter
     private final Item item;
 
-    protected abstract void updateQuality();
+    abstract void updateQuality();
 
-    protected AbstractItem(Item item) {
+    AbstractItem(Item item) {
         this.item = item;
     }
 
-    protected void decreaseSellIn() {
-        getItem().sellIn--;
-    }
-
-    protected void increaseQuality(int amount) {
-        getItem().quality = Math.min(getItem().quality + amount, MAX_QUALITY);
-    }
-
-    protected void increaseQuality() {
-        increaseQuality(1);
-    }
-
-    protected void decreaseQuality(int amount) {
-        getItem().quality = Math.max(getItem().quality - amount, MIN_QUALITY);
-    }
-
-    protected boolean isExpired() {
+    boolean isExpired() {
         return isSellInSmallerThan(0);
     }
 
-    protected boolean isSellInSmallerThan(int sellInValue) {
+    final void decreaseSellIn() {
+        getItem().sellIn--;
+    }
+
+    final void increaseQuality(int amount) {
+        getItem().quality = Math.min(getItem().quality + amount, MAX_QUALITY);
+    }
+
+    final void increaseQuality() {
+        increaseQuality(1);
+    }
+
+    final void decreaseQuality(int amount) {
+        getItem().quality = Math.max(getItem().quality - amount, MIN_QUALITY);
+    }
+
+    final boolean isSellInSmallerThan(int sellInValue) {
         return getItem().sellIn < sellInValue;
     }
 }

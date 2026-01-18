@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
+import static com.gildedrose.GildedRoseTestFactory.*;
 import static com.gildedrose.item.ItemType.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -20,8 +21,7 @@ class GildedRoseTest {
     @MethodSource("provideTimesAndExpectedQualityAndSellIn")
     void normalItemUpdateTest(int times, int expectedSellIn, int expectedQuality) {
         // given
-        Item[] items = new Item[]{new Item(faker.funnyName().name(), 10, 20)};
-        GildedRose gildedRose = new GildedRose(items);
+        GildedRose gildedRose = createWithItem(faker.funnyName().name(), 10, 20);
 
         // when
         updateQuality(gildedRose, times);
@@ -35,8 +35,7 @@ class GildedRoseTest {
     @MethodSource("provideSpecialItems")
     void specialItemUpdateTest(ItemType itemName, int times, int expectedSellIn, int expectedQuality) {
         // given
-        Item[] items = new Item[]{new Item(itemName.getName(), 10, 20)};
-        GildedRose gildedRose = new GildedRose(items);
+        GildedRose gildedRose = createWithItem(itemName, 10, 20);
 
         // when
         updateQuality(gildedRose, times);
@@ -49,8 +48,7 @@ class GildedRoseTest {
     @Test
     void sulfurasWithNegativeSellInDoesntChange() {
         // given
-        Item[] items = new Item[]{new Item(SULFURAS.getName(), -1, 999)};
-        GildedRose gildedRose = new GildedRose(items);
+        GildedRose gildedRose = createWithItem(SULFURAS.getName(), -1, 999);
 
         // when
         updateQuality(gildedRose, 50);
@@ -64,8 +62,7 @@ class GildedRoseTest {
     @MethodSource("provideTimesAndExpectedQualityAndSellInConjured")
     void conjuredItemUpdateTest(int times, int expectedSellIn, int expectedQuality) {
         // given
-        Item[] items = new Item[]{new Item("Conjured " + faker.funnyName().name(), 10, 20)};
-        GildedRose gildedRose = new GildedRose(items);
+        GildedRose gildedRose = createWithItem("Conjured " + faker.funnyName().name(), 10, 20);
 
         // when
         updateQuality(gildedRose, times);
@@ -77,22 +74,21 @@ class GildedRoseTest {
 
     @Test
     void multipleItemsTest() {
-        Item[] items = new Item[] {
+        GildedRose gildedRoseWithMultipleItems = createWithItems(
             new Item(faker.beer().name(), 10, 20),
             new Item(AGED_BRIE.getName(), 10, 20),
             new Item(SULFURAS.getName(), 10, 80),
             new Item(BACKSTAGE_PASSES.getName(), 10, 20),
             new Item("Conjured " + faker.beer().name(), 10, 20)
-        };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
+        );
+        gildedRoseWithMultipleItems.updateQuality();
 
 
-        assertThat(app.items[0].quality).isEqualTo(19);
-        assertThat(app.items[1].quality).isEqualTo(21);
-        assertThat(app.items[2].quality).isEqualTo(80);
-        assertThat(app.items[3].quality).isEqualTo(22);
-        assertThat(app.items[4].quality).isEqualTo(18);
+        assertThat(gildedRoseWithMultipleItems.items[0].quality).isEqualTo(19);
+        assertThat(gildedRoseWithMultipleItems.items[1].quality).isEqualTo(21);
+        assertThat(gildedRoseWithMultipleItems.items[2].quality).isEqualTo(80);
+        assertThat(gildedRoseWithMultipleItems.items[3].quality).isEqualTo(22);
+        assertThat(gildedRoseWithMultipleItems.items[4].quality).isEqualTo(18);
     }
 
 
