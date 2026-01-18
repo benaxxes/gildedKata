@@ -18,13 +18,16 @@ class BackstagePass extends AbstractItem {
 
     @Override
     protected void updateQuality() {
-        increaseQuality();
-        if (isSellInSmallerThan(11)) {
-            increaseQuality();
-        }
+        int qualityIncrease = calculateQualityIncrease();
+        increaseQuality(qualityIncrease);
+    }
 
+    private int calculateQualityIncrease() {
         if (isSellInSmallerThan(6)) {
-            increaseQuality();
+            return 3;
+        } else if (isSellInSmallerThan(11)) {
+            return 2;
         }
+        return 1;
     }
 }

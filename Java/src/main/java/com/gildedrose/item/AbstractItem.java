@@ -18,8 +18,12 @@ abstract class AbstractItem implements ItemUpdater {
         getItem().sellIn--;
     }
 
+    protected void increaseQuality(int amount) {
+        getItem().quality = Math.min(getItem().quality + amount, MAX_QUALITY);
+    }
+
     protected void increaseQuality() {
-        getItem().quality = Math.min(getItem().quality + 1, MAX_QUALITY);
+        increaseQuality(1);
     }
 
     protected void decreaseQuality(int amount) {
