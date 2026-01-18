@@ -3,7 +3,7 @@ package com.gildedrose.item;
 
 import lombok.Getter;
 
-class BackstagePass implements ItemI {
+class BackstagePass implements ItemUpdater {
     @Getter
     Item item;
 
@@ -20,10 +20,6 @@ class BackstagePass implements ItemI {
         if (getItem().sellIn < 0) {
             getItem().quality = 0;
         }
-    }
-
-    private void updateSellIn() {
-        getItem().sellIn--;
     }
 
     private void updateQuality() {

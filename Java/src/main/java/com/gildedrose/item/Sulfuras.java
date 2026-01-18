@@ -3,7 +3,7 @@ package com.gildedrose.item;
 
 import lombok.Getter;
 
-class Sulfuras implements ItemI {
+class Sulfuras implements ItemUpdater {
     @Getter
     Item item;
 

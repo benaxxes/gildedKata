@@ -2,7 +2,7 @@ package com.gildedrose.item;
 
 import lombok.Getter;
 
-class AgedBrie implements ItemI {
+class AgedBrie implements ItemUpdater {
     @Getter
     Item item;
 
@@ -18,10 +18,6 @@ class AgedBrie implements ItemI {
         if (getItem().sellIn < 0) {
             updateQuality();
         }
-    }
-
-    private void updateSellIn() {
-        getItem().sellIn--;
     }
 
     private void updateQuality() {

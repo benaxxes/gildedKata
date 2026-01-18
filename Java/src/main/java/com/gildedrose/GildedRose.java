@@ -2,7 +2,7 @@ package com.gildedrose;
 
 import com.gildedrose.item.Item;
 import com.gildedrose.item.ItemFactory;
-import com.gildedrose.item.ItemI;
+import com.gildedrose.item.ItemUpdater;
 
 class GildedRose {
     Item[] items;
@@ -14,12 +14,12 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            ItemI mappedItem = ItemFactory.newItem(item);
+            ItemUpdater mappedItem = ItemFactory.newItem(item);
             updateQualityForItem(mappedItem);
         }
     }
 
-    private void updateQualityForItem(ItemI item) {
+    private void updateQualityForItem(ItemUpdater item) {
         item.updateOneDay();
     }
 
