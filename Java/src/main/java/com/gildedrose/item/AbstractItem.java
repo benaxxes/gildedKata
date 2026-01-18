@@ -20,8 +20,8 @@ public abstract class AbstractItem implements ItemUpdater {
         getItem().quality = Math.min(getItem().quality + 1, MAX_QUALITY);
     }
 
-    protected void decreaseQuality() {
-        getItem().quality = Math.max(getItem().quality - 1, MIN_QUALITY);
+    protected void decreaseQuality(int amount) {
+        getItem().quality = Math.max(getItem().quality - amount, MIN_QUALITY);
     }
 
     protected boolean isSellInSmallerThan(int sellInValue) {

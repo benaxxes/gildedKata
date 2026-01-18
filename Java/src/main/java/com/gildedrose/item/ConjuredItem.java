@@ -10,16 +10,13 @@ public class ConjuredItem extends AbstractItem {
     @Override
     public void updateOneDay() {
         updateQuality();
-        updateQuality();
         decreaseSellIn();
-
-        if (isSellInSmallerThan(0)) {
-            updateQuality();
+        if (isExpired()) {
             updateQuality();
         }
     }
 
     private void updateQuality() {
-            decreaseQuality();
+            decreaseQuality(2);
     }
 }

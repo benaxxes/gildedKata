@@ -17,6 +17,6 @@ class NormalItem extends AbstractItem {
     }
 
     private void updateQuality() {
-        decreaseQuality();
+        decreaseQuality(1);
     }
 }
