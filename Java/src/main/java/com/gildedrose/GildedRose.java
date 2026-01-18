@@ -1,6 +1,8 @@
 package com.gildedrose;
 
-import static com.gildedrose.ItemType.*;
+import com.gildedrose.item.Item;
+import com.gildedrose.item.ItemFactory;
+import com.gildedrose.item.ItemI;
 
 class GildedRose {
     Item[] items;
@@ -9,57 +11,16 @@ class GildedRose {
         this.items = items;
     }
 
+
     public void updateQuality() {
         for (Item item : items) {
-            updateItem(item);
+            ItemI mappedItem = ItemFactory.newItem(item);
+            updateQualityForItem(mappedItem);
         }
     }
 
-    private static void updateItem(Item item) {
-        if (!item.name.equals(AGED_BRIE.getName()) && !item.name.equals(BACKSTAGE_PASSES.getName())) {
-            if (item.quality > 0 && !item.name.equals(SULFURAS.getName())) {
-                item.quality--;
-            }
-        } else {
-            if (item.quality < 50) {
-                item.quality++;
-
-                if (item.name.equals(BACKSTAGE_PASSES.getName())) {
-                    if (item.sellIn < 11) {
-                        if (item.quality < 50) {
-                            item.quality++;
-                        }
-                    }
-
-                    if (item.sellIn < 6) {
-                        if (item.quality < 50) {
-                            item.quality++;
-                        }
-                    }
-                }
-            }
-        }
-
-        if (!item.name.equals(SULFURAS.getName())) {
-            item.sellIn--;
-        }
-
-        if (item.sellIn < 0) {
-            if (!item.name.equals(AGED_BRIE.getName())) {
-                if (!item.name.equals(BACKSTAGE_PASSES.getName())) {
-                    if (item.quality > 0) {
-                        if (!item.name.equals(SULFURAS.getName())) {
-                            item.quality--;
-                        }
-                    }
-                } else {
-                    item.quality = 0;
-                }
-            } else {
-                if (item.quality < 50) {
-                    item.quality++;
-                }
-            }
-        }
+    private void updateQualityForItem(ItemI item) {
+        item.updateQuality();
     }
+
 }
