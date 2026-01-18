@@ -16,8 +16,6 @@ class AgedBrie extends AbstractItem {
     }
 
     private void updateQuality() {
-        if (isQualitySmallerThan()) {
-            increaseQuality(1);
-        }
+        increaseQuality();
     }
 }

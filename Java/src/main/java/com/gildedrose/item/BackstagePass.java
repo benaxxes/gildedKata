@@ -17,16 +17,14 @@ class BackstagePass extends AbstractItem {
     }
 
     private void updateQuality() {
-        if (getItem().quality < 50) {
-            increaseQuality(1);
+        increaseQuality();
 
-            if (isSellInSmallerThan(11) && isQualitySmallerThan()) {
-                increaseQuality(1);
-            }
+        if (isSellInSmallerThan(11)) {
+            increaseQuality();
+        }
 
-            if (isSellInSmallerThan(6) && isQualitySmallerThan()) {
-                increaseQuality(1);
-            }
+        if (isSellInSmallerThan(6)) {
+            increaseQuality();
         }
     }
 }

@@ -17,8 +17,6 @@ class NormalItem extends AbstractItem {
     }
 
     private void updateQuality() {
-        if (getItem().quality > 0) {
-            decreaseQuality(1);
-        }
+        decreaseQuality();
     }
 }
