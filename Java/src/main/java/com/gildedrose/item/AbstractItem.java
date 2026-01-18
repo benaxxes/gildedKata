@@ -2,11 +2,11 @@ package com.gildedrose.item;
 
 import lombok.Getter;
 
-public abstract class AbstractItem implements ItemUpdater {
+abstract class AbstractItem implements ItemUpdater {
     protected static final int MIN_QUALITY = 0;
     protected static final int MAX_QUALITY = 50;
     @Getter
-    Item item;
+    private final Item item;
 
     protected abstract void updateQuality();
 

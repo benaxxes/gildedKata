@@ -2,7 +2,9 @@ package com.gildedrose.item;
 
 
 public abstract class LegendaryItem implements ItemUpdater {
-    Item item;
+    private static final int LEGENDARY_QUALITY = 80;
+
+    private final Item item;
 
     protected LegendaryItem(Item item) {
         this.item = item;
@@ -10,6 +12,6 @@ public abstract class LegendaryItem implements ItemUpdater {
 
     @Override
     public void updateOneDay() {
-        item.quality = 80;
+        item.quality = LEGENDARY_QUALITY;
     }
 }
