@@ -1,21 +1,16 @@
 package com.gildedrose.item;
 
-import lombok.Getter;
-
-class NormalItem implements ItemUpdater {
-    @Getter
-    Item item;
-
+class NormalItem extends AbstractItem {
     public NormalItem(Item item) {
-        this.item = item;
+        super(item);
     }
 
     @Override
     public void updateOneDay() {
         updateQuality();
-        updateSellIn();
+        decreaseSellIn();
 
-        if (getItem().sellIn < 0) {
+        if (isExpired()) {
             updateQuality();
         }
 
@@ -23,7 +18,7 @@ class NormalItem implements ItemUpdater {
 
     private void updateQuality() {
         if (getItem().quality > 0) {
-            getItem().quality--;
+            decreaseQuality(1);
         }
     }
 }

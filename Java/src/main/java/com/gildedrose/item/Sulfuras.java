@@ -1,14 +1,9 @@
 package com.gildedrose.item;
 
 
-import lombok.Getter;
-
-class Sulfuras implements ItemUpdater {
-    @Getter
-    Item item;
-
+class Sulfuras extends AbstractItem {
     public Sulfuras(Item item) {
-        this.item = item;
+        super(item);
     }
 
     @Override
@@ -17,7 +12,7 @@ class Sulfuras implements ItemUpdater {
     }
 
     private void updateQuality() {
-        if (getItem().sellIn < 0) {
+        if (isExpired()) {
             getItem().quality = 0;
         }
     }

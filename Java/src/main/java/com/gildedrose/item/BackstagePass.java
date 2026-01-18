@@ -1,37 +1,31 @@
 package com.gildedrose.item;
 
 
-import lombok.Getter;
-
-class BackstagePass implements ItemUpdater {
-    @Getter
-    Item item;
-
+class BackstagePass extends AbstractItem {
     public BackstagePass(Item item) {
-        this.item = item;
+        super(item);
     }
 
     @Override
     public void updateOneDay() {
         updateQuality();
+        decreaseSellIn();
 
-        updateSellIn();
-
-        if (getItem().sellIn < 0) {
+        if (isExpired()) {
             getItem().quality = 0;
         }
     }
 
     private void updateQuality() {
         if (getItem().quality < 50) {
-            getItem().quality++;
+            increaseQuality(1);
 
-            if (getItem().sellIn < 11 && getItem().quality < 50) {
-                getItem().quality++;
+            if (isSellInSmallerThan(11) && isQualitySmallerThan()) {
+                increaseQuality(1);
             }
 
-            if (getItem().sellIn < 6 && getItem().quality < 50) {
-                getItem().quality++;
+            if (isSellInSmallerThan(6) && isQualitySmallerThan()) {
+                increaseQuality(1);
             }
         }
     }

@@ -1,28 +1,23 @@
 package com.gildedrose.item;
 
-import lombok.Getter;
-
-class AgedBrie implements ItemUpdater {
-    @Getter
-    Item item;
-
-    public AgedBrie(Item item) {
-        this.item = item;
+class AgedBrie extends AbstractItem {
+    protected AgedBrie(Item item) {
+        super(item);
     }
 
     @Override
     public void updateOneDay() {
         updateQuality();
-        updateSellIn();
+        decreaseSellIn();
 
-        if (getItem().sellIn < 0) {
+        if (isExpired()) {
             updateQuality();
         }
     }
 
     private void updateQuality() {
-        if (getItem().quality < 50) {
-            getItem().quality++;
+        if (isQualitySmallerThan()) {
+            increaseQuality(1);
         }
     }
 }
