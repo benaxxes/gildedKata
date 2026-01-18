@@ -11,7 +11,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class GildedRoseTest {
 
-
     @ParameterizedTest(name = "After {0} days, sellIn should be {1} and quality should be {2}")
     @MethodSource("provideTimesAndExpectedQualityAndSellIn")
     void normalItemUpdateTest(int times, int expectedSellIn, int expectedQuality) {
