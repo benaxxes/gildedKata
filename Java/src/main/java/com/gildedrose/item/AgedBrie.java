@@ -11,14 +11,21 @@ class AgedBrie implements ItemI {
     }
 
     @Override
-    public void updateQuality() {
-        if (getItem().quality < 50) {
-            getItem().quality++;
+    public void updateOneDay() {
+        updateQuality();
+        updateSellIn();
+
+        if (getItem().sellIn < 0) {
+            updateQuality();
         }
+    }
 
+    private void updateSellIn() {
         getItem().sellIn--;
+    }
 
-        if (getItem().sellIn < 0 && getItem().quality < 50) {
+    private void updateQuality() {
+        if (getItem().quality < 50) {
             getItem().quality++;
         }
     }

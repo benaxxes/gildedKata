@@ -20,7 +20,7 @@ class GildedRose {
     }
 
     private void updateQualityForItem(ItemI item) {
-        item.updateQuality();
+        item.updateOneDay();
     }
 
 }

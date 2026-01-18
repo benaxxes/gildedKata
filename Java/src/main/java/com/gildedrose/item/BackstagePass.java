@@ -12,7 +12,21 @@ class BackstagePass implements ItemI {
     }
 
     @Override
-    public void updateQuality() {
+    public void updateOneDay() {
+        updateQuality();
+
+        updateSellIn();
+
+        if (getItem().sellIn < 0) {
+            getItem().quality = 0;
+        }
+    }
+
+    private void updateSellIn() {
+        getItem().sellIn--;
+    }
+
+    private void updateQuality() {
         if (getItem().quality < 50) {
             getItem().quality++;
 
@@ -23,12 +37,6 @@ class BackstagePass implements ItemI {
             if (getItem().sellIn < 6 && getItem().quality < 50) {
                 getItem().quality++;
             }
-        }
-
-        getItem().sellIn--;
-
-        if (getItem().sellIn < 0) {
-            getItem().quality = 0;
         }
     }
 }

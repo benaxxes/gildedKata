@@ -11,16 +11,23 @@ class NormalItem implements ItemI {
     }
 
     @Override
-    public void updateQuality() {
+    public void updateOneDay() {
+        updateQuality();
+        updateSellIn();
+
+        if (getItem().sellIn < 0) {
+            updateQuality();
+        }
+
+    }
+
+    private void updateSellIn() {
+        getItem().sellIn--;
+    }
+
+    private void updateQuality() {
         if (getItem().quality > 0) {
             getItem().quality--;
         }
-
-        getItem().sellIn--;
-
-        if (getItem().sellIn < 0 && getItem().quality > 0) {
-            getItem().quality--;
-        }
-
     }
 }

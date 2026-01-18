@@ -12,7 +12,11 @@ class Sulfuras implements ItemI {
     }
 
     @Override
-    public void updateQuality() {
+    public void updateOneDay() {
+        updateQuality();
+    }
+
+    private void updateQuality() {
         if (getItem().sellIn < 0) {
             getItem().quality = 0;
         }
