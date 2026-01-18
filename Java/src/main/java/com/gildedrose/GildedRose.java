@@ -14,8 +14,8 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            ItemUpdater mappedItem = ItemFactory.newItem(item);
-            mappedItem.updateOneDay();
+            ItemUpdater itemUpdater = ItemFactory.newItem(item);
+            itemUpdater.updateOneDay();
         }
     }
 

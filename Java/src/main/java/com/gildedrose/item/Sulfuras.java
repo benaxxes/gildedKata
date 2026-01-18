@@ -1,20 +1,10 @@
 package com.gildedrose.item;
 
 
-class Sulfuras extends AbstractItem {
-    public Sulfuras(Item item) {
+public class Sulfuras extends LegendaryItem {
+
+    protected Sulfuras(Item item) {
         super(item);
     }
-
-    @Override
-    public void updateOneDay() {
-        updateQuality();
-    }
-
-    @Override
-    protected void updateQuality() {
-        if (isExpired()) {
-            getItem().quality = 0;
-        }
-    }
 }
+
